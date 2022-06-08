@@ -2,7 +2,7 @@
 import { projects, clients } from '../sampleData.js';
 // console.log(clients)
 // const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema } = require('graphql');
-import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema, GraphQLList } from 'graphql';
+import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema, GraphQLList, GraphQLNonNull } from 'graphql';
 
 import Client from '../models/Client.js';
 import Project from '../models/project.js';
@@ -84,14 +84,45 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-const schema = new GraphQLSchema({
-  query: RootQuery
-})
+
 
 
 // module.exports = new GraphQLSchema({
 //   query: RootQuery
 // })
+
+// Mutations
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addClient: {
+      type: ClientType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        phone: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: (parent, args) => {
+        const client = new Client({
+          name: args.name,
+          email: args.email,
+          phone: args.phone
+        })
+
+        return client.save();
+      }
+    }
+    
+  }
+})
+
+
+
+const schema = new GraphQLSchema({
+  query: RootQuery,
+  mutation
+})
+
 
 export default schema;
 

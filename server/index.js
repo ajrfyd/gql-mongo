@@ -21,10 +21,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { graphqlHTTP } from 'express-graphql';
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import schema from './schema/schema.js';
 import colors from 'colors';
 import connectDB from './config/db.js';
+import { typeDefs, resolvers } from './apollo/apollo.js'
 
 dotenv.config();
 const app = express();
@@ -42,4 +43,11 @@ app.use('/graphql', graphqlHTTP({
 
 app.listen(port, (req, res) => {
   console.log(`Server Listening on ${port}`)
+})
+
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen().then(({adress, family, url, port, server}) => {
+  console.log(adress, family, url, port)
 })
