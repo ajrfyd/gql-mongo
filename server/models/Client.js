@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const ClientSchema = new mongoose.Schema({
   name: {
-    type: String,
+    type: String, 
   },
   email: {
-    tyle: String,
+    type: String,
   },
   phone: {
     type: String
