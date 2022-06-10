@@ -8,6 +8,8 @@ const client = new ApolloClient({
         fields: {
           clients: {
             merge(existing, incoming) {
+              // console.log(existing);
+              // console.log(incoming);
               return incoming;
             }
           },

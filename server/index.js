@@ -29,8 +29,8 @@ app.listen(port, (req, res) => {
 })
 
 
-const server = new ApolloServer({ typeDefs, resolvers });
+// const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen().then(({adress, family, url, port, server}) => {
-  console.log(adress, family, url, port)
-})
+// server.listen().then(({adress, family, url, port, server}) => {
+//   console.log(adress, family, url, port)
+// })

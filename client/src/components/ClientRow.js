@@ -12,13 +12,14 @@ const ClientRow = ({ client }) => {
       const { clients } = cache.readQuery({
         query: GET_CLIENTS
       });
+      
       cache.writeQuery({
         query: GET_CLIENTS,
         data: { clients: clients.filter(client => client.id !== deleteClient.id) },
       })
     }
   });
-  console.log(deleteClient);
+  // console.log(deleteClient);
 
   const deleteHandler = () => {
     deleteClient();
