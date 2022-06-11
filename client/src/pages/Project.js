@@ -33,6 +33,8 @@ const Project = () => {
             <ClientInfo client={data.project.client}/>
 
             <DeleteProjectButton projectId={data.project.id}/>
+
+            <EditProjectForm project={data.project}/>
           </div>
         )
       }
