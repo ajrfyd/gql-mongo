@@ -18,7 +18,7 @@ const AddClientModal = () => {
       });
       cache.writeQuery({
         query: GET_CLIENTS,
-        data: { clients: [...clients, addClient] }
+        data: { clients: [addClient, ...clients] }
       })
     }
   })
